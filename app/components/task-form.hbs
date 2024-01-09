@@ -1,1 +1,32 @@
-{{yield}}
+<div class="form-container">
+  <form {{on 'submit' this.saveTask}}>
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" id="title" required {{on 'input' (action (mut this.title))}} />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" {{on 'input' (action (mut this.description))}}></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="status">Status:</label>
+      <select id="status" {{on 'input' (action (mut this.status))}}>
+        <option value="todo">To-Do</option>
+        <option value="in-progress">In Progress</option>
+        <option value="completed">Completed</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="dueDate">Due Date:</label>
+      <input type="date" id="dueDate" {{on 'input' (action (mut this.dueDate))}} />
+    </div>
+
+    <div class="button-group">
+      <button type="submit">Save</button>
+      <button type="button" {{on 'click' this.cancel}}>Cancel</button>
+    </div>
+  </form>
+</div>
