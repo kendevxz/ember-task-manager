@@ -12,7 +12,6 @@ export default class TaskFormComponent extends Component {
 
   @action
   async saveTask() {
-    // Create a new task using Ember Data
     const newTask = this.store.createRecord('task', {
       title: this.title,
       description: this.description,
@@ -20,22 +19,17 @@ export default class TaskFormComponent extends Component {
       dueDate: this.dueDate,
     });
 
-    // Save the task to the server
     await newTask.save();
 
-    // Reset form fields
     this.resetForm();
 
-    // Trigger an action to notify the parent component or route
     this.args.saveTask();
   }
 
   @action
   cancel() {
-    // Reset form fields
     this.resetForm();
 
-    // Trigger an action to notify the parent component or route
     this.args.cancel();
   }
 

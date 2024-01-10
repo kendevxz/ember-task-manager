@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 
-export default class TasksRoute extends Route {
+export default class AuthorsRoute extends Route {
   @service store;
 
   model() {
