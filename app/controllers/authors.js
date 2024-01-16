@@ -2,34 +2,34 @@ import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-export default class TasksController extends Controller {
+export default class AuthorsController extends Controller {
   @service store;
 
   @action
-  async deleteTask(task) {
+  async deleteAuthor(author) {
     try {
-      await task.destroyRecord();
+      await author.destroyRecord();
     } catch (error) {
-      console.error('Error deleting task:', error.message);
+      console.error('Error deleting author:', error.message);
     }
   }
 
   @action
-  async createTask(newTask) {
+  async createAuthor(newAuthor) {
     try {
-      await this.store.createRecord('task', newTask).save();
+      await this.store.createRecord('author', newAuthor).save();
     } catch (error) {
-      console.error('Error creating task:', error.message);
+      console.error('Error creating author:', error.message);
     }
   }
 
   @action
-  async updateTask(task, updatedTask) {
+  async updateAuthor(author, updatedAuthor) {
     try {
-      task.setProperties(updatedTask);
-      await task.save();
+      author.setProperties(updatedAuthor);
+      await author.save();
     } catch (error) {
-      console.error('Error updating task:', error.message);
+      console.error('Error updating author:', error.message);
     }
   }
 }

@@ -1,1 +1,13 @@
-{{yield}}
+<div class="form-container">
+  <form {{on 'submit' this.saveAuthor}}>
+    <div class="form-group">
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" required value={{this.name}} {{on 'input' this.handleNameChange}} />
+    </div>
+
+    <div class="button-group">
+      <button type="submit">Save</button>
+      <button type="button" {{on 'click' this.cancel}}>Cancel</button>
+    </div>
+  </form>
+</div>

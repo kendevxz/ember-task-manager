@@ -27,7 +27,6 @@ export default class TaskFormComponent extends Component {
 
   @action
   handleDueDateChange(event) {
-    // Parse the date value from the input
     this.dueDate = event.target.value ? new Date(event.target.value) : null;
   }
 
