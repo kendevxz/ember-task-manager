@@ -1,5 +1,8 @@
 <ul>
   {{#each @tasks as |task|}}
-    <li>{{task.title}} - {{task.description}}</li>
+    <li>Task: {{task.title}} <br>
+    Description: {{task.description}} <br>
+    Status: {{task.status}} <br>
+    Due Date: {{task.dueDate}}</li>
   {{/each}}
 </ul>

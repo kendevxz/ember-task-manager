@@ -7,11 +7,34 @@ export default class TaskFormComponent extends Component {
 
   title = '';
   description = '';
-  status = 'todo';
+  status = 'to-do';
   dueDate = null;
 
   @action
-  async saveTask() {
+  handleTitleChange(event) {
+    this.title = event.target.value;
+  }
+
+  @action
+  handleDescriptionChange(event) {
+    this.description = event.target.value;
+  }
+
+  @action
+  handleStatusChange(event) {
+    this.status = event.target.value;
+  }
+
+  @action
+  handleDueDateChange(event) {
+    // Parse the date value from the input
+    this.dueDate = event.target.value ? new Date(event.target.value) : null;
+  }
+
+  @action
+  async saveTask(event) {
+    event.preventDefault();
+
     const newTask = this.store.createRecord('task', {
       title: this.title,
       description: this.description,
@@ -23,20 +46,24 @@ export default class TaskFormComponent extends Component {
 
     this.resetForm();
 
-    this.args.saveTask();
+    if (typeof this.args.saveTask === 'function') {
+      this.args.saveTask();
+    }
   }
 
   @action
   cancel() {
     this.resetForm();
 
-    this.args.cancel();
+    if (typeof this.args.cancel === 'function') {
+      this.args.cancel();
+    }
   }
 
   resetForm() {
     this.title = '';
     this.description = '';
-    this.status = 'todo';
+    this.status = 'to-do';
     this.dueDate = null;
   }
 }
