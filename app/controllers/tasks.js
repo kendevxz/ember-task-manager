@@ -6,12 +6,12 @@ export default class TasksController extends Controller {
   @service store;
 
   @action
-  deleteTask(task) {
-    console.log('Deleting task:', task);
-    task
-      .destroyRecord()
-      .then(() => console.log('Task deleted successfully'))
-      .catch((error) => console.error('Error deleting task:', error.message));
+  async deleteTask(task) {
+    try {
+      await task.destroyRecord();
+    } catch (error) {
+      console.error('Error deleting task:', error.message);
+    }
   }
 
   @action
