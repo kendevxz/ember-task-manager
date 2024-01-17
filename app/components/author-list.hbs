@@ -3,7 +3,7 @@
   <ul class="text-list">
     {{#each @authors as |author|}}
       <div class="form-container">
-        <li class="text-item">{{author.name}}</li>
+        <li class="text-item">{{author.id}}. {{author.name}}</li>
         <button type="button" {{on "click" (fn this.deleteAuthor author)}}>Delete</button>
       </div>
     {{/each}}

@@ -6,6 +6,15 @@
     </div>
 
     <div class="form-group">
+      <select id="author" value={{this.author}} {{on 'change' this.handleAuthorChange}}>
+        <option value="">Select an author</option>
+        {{#each this.authors as |author|}}
+          <option value={{author.id}}>{{author.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="form-group">
       <label for="description" class="text-label">Description:</label><br>
       <textarea id="description" value={{this.description}} {{on 'input' this.handleDescriptionChange}}></textarea>
     </div>

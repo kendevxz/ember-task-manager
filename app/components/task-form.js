@@ -7,13 +7,31 @@ export default class TaskFormComponent extends Component {
   @service store;
 
   @tracked title = '';
+  @tracked author = null;
   @tracked description = '';
   @tracked status = 'to-do';
   @tracked dueDate = null;
+  @tracked authors = [];
 
+  constructor() {
+    super(...arguments);
+    this.loadAuthors();
+  }
+
+  async loadAuthors() {
+    this.authors = await this.store.findAll('author');
+  }
   @action
   handleTitleChange(event) {
     this.title = event.target.value;
+  }
+
+  @action
+  handleAuthorChange(event) {
+    const authorId = event.target.value;
+    const author = this.store.peekRecord('author', authorId);
+
+    this.author = author;
   }
 
   @action
@@ -35,21 +53,31 @@ export default class TaskFormComponent extends Component {
   async saveTask(event) {
     event.preventDefault();
 
-    const newTask = this.store.createRecord('task', {
-      title: this.title,
-      description: this.description,
-      status: this.status,
-      dueDate: this.dueDate,
-    });
+    try {
+      // Save the author first
+      await this.author.save();
 
-    await newTask.save();
+      // Create and save the task
+      const newTask = this.store.createRecord('task', {
+        title: this.title,
+        author: this.author,
+        description: this.description,
+        status: this.status,
+        dueDate: this.dueDate,
+      });
 
-    this.resetForm();
+      await newTask.save();
 
-    if (typeof this.args.saveTask === 'function') {
-      this.args.saveTask();
+      this.resetForm();
+
+      if (typeof this.args.saveTask === 'function') {
+        this.args.saveTask();
+      }
+    } catch (error) {
+      console.error('Error saving task:', error);
     }
   }
+
 
   @action
   cancel() {
@@ -63,6 +91,7 @@ export default class TaskFormComponent extends Component {
   resetForm() {
     console.log('Resetting form...');
     this.title = '';
+    this.author = null;
     this.description = '';
     this.status = 'to-do';
     this.dueDate = null;
