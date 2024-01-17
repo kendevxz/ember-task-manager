@@ -1,8 +1,17 @@
-<ul>
-  {{#each @tasks as |task|}}
-    <li>Task: {{task.title}} <br>
-    Description: {{task.description}} <br>
-    Status: {{task.status}} <br>
-    Due Date: {{task.dueDate}}</li>
-  {{/each}}
-</ul>
+<div class="form-container">
+  <p class="text-label">Task List</p>
+  <ul class="authors-list">
+    {{#each @tasks as |task|}}
+      <div class="form-container">
+        <li class="author-item">
+        Task: {{task.title}} <br>
+        Description: {{task.description}} <br>
+        Status: {{task.status}} <br>
+        Due Date: {{task.dueDate}}
+
+        <button {{action this.deleteTask task}}>Delete</button>
+        </li>
+      </div>
+    {{/each}}
+  </ul>
+</div>

@@ -1,17 +1,17 @@
 <div class="form-container">
   <form {{on 'submit' this.saveTask}}>
     <div class="form-group">
-      <label for="title">Title:</label><br>
+      <label for="title" class="text-label">Title:</label><br>
       <input type="text" id="title" required value={{this.title}} {{on 'input' this.handleTitleChange}} />
     </div>
 
     <div class="form-group">
-      <label for="description">Description:</label><br>
+      <label for="description" class="text-label">Description:</label><br>
       <textarea id="description" value={{this.description}} {{on 'input' this.handleDescriptionChange}}></textarea>
     </div>
 
     <div class="form-group">
-      <label for="status">Status:</label><br>
+      <label for="status" class="text-label">Status:</label><br>
       <select id="status" value={{this.status}} {{on 'input' this.handleStatusChange}}>
         <option value="to-do">To-Do</option>
         <option value="in-progress">In Progress</option>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="form-group">
-      <label for="dueDate">Due Date:</label><br>
+      <label for="dueDate" class="text-label">Due Date:</label><br>
       <input type="date" id="dueDate" value={{this.dueDate}} {{on 'input' this.handleDueDateChange}} />
     </div>
 

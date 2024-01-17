@@ -51,6 +51,21 @@ export default class TaskFormComponent extends Component {
   }
 
   @action
+  editTask(task) {
+    this.isEditing = true;
+    this.task = task;
+    this.title = task.title;
+    this.description = task.description;
+    this.status = task.status;
+    this.dueDate = task.dueDate;
+  }
+
+  @action
+  deleteTask(task) {
+    this.args.deleteTask(task);
+  }
+
+  @action
   cancel() {
     this.resetForm();
 

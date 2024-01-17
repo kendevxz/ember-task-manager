@@ -1,7 +1,10 @@
 <div class="form-container">
-  <ul class="authors-list">
+  <p class="text-label">Author List</p>
+  <ul class="text-list">
     {{#each @authors as |author|}}
-      <li class="author-item">Author: {{author.name}}</li>
+      <div class="form-container">
+        <li class="text-item">{{author.name}}</li>
+      </div>
     {{/each}}
   </ul>
 </div>
