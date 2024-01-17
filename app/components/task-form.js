@@ -1,14 +1,15 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
 export default class TaskFormComponent extends Component {
   @service store;
 
-  title = '';
-  description = '';
-  status = 'to-do';
-  dueDate = null;
+  @tracked title = '';
+  @tracked description = '';
+  @tracked status = 'to-do';
+  @tracked dueDate = null;
 
   @action
   handleTitleChange(event) {
@@ -60,6 +61,7 @@ export default class TaskFormComponent extends Component {
   }
 
   resetForm() {
+    console.log('Resetting form...');
     this.title = '';
     this.description = '';
     this.status = 'to-do';
