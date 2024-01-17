@@ -8,6 +8,7 @@
         Description: {{task.description}} <br>
         Status: {{task.status}} <br>
         Due Date: {{task.dueDate}}
+        <button type="button" {{on "click" (fn this.deleteTask task)}}>Delete</button>
         </li>
       </div>
     {{/each}}

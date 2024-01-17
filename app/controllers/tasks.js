@@ -6,15 +6,6 @@ export default class TasksController extends Controller {
   @service store;
 
   @action
-  async deleteTask(task) {
-    try {
-      await task.destroyRecord();
-    } catch (error) {
-      console.error('Error deleting task:', error.message);
-    }
-  }
-
-  @action
   async createTask(newTask) {
     try {
       await this.store.createRecord('task', newTask).save();
